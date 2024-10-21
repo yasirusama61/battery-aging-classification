@@ -48,7 +48,7 @@ Below are key plots that were generated from the 10-cycle experiment:
 
 1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the 10 charge-discharge cycles. The consistent pattern indicates stable battery behavior across all cycles.
 
-   ![Voltage and Current over Time](voltage_current_plot.png)
+   ![Voltage and Current over Time](plots/voltage_current_plot.png)
 
 ### Insights:
 - This experiment highlights the stability of the battery over the initial 10 cycles, with no visible degradation.
