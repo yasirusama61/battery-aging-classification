@@ -16,24 +16,6 @@ Features:
 - SOC and dV/dSOC curve generation for both default and modified simulations.
 - Data is saved in CSV format for further analysis.
 """
-#!/usr/bin/env python
-# coding: utf-8
-
-"""
-Battery Aging Simulation Script using PyBaMM
-
-Developed by : Usama Yasir Khan , ML Engineer 
-
-This script simulates the aging of a lithium-ion battery using the Doyle-Fuller-Newman (DFN) model
-provided by PyBaMM. The simulation tracks important parameters such as voltage, current, and capacity
-as the battery discharges. The script also calculates the differential voltage (dV) over state-of-charge (SOC)
-to generate dV/dSOC curves, useful in understanding battery aging characteristics.
-
-Features:
-- Default and modified parameter simulations for positive and negative electrodes.
-- SOC and dV/dSOC curve generation for both default and modified simulations.
-- Data is saved in CSV format for further analysis.
-"""
 
 import pybamm
 import numpy as np
