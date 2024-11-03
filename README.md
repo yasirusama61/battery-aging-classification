@@ -64,7 +64,19 @@ The data was collected using an LG 18650HG2 battery cell, tested in a thermal ch
 The data was used to classify the battery's aging stages into categories such as **Aged**, **Moderate Aging**, and **Healthy**. The features used for the model included:
 - **Voltage [V]**, **Current [A]**, **Temperature [C]**, **Capacity [Ah]**, **Voltage_Avg**, **Current_Avg**, **Temperature_Avg**, **Delta_Capacity**
 
-The target variable for classification was the **Aging_Label**, derived from capacity thresholds to indicate the aging state.
+The target variable for classification was the **Aging_Label**, derived from capacity thresholds to indicate the aging state. Specifically:
+- **Healthy**: The battery is considered healthy when its capacity is above **85%** of the initial capacity.
+- **Moderate Aging**: The battery is classified as moderately aged when the capacity drops between **70% and 85%** of the initial capacity.
+- **Aged**: The battery is classified as aged when the capacity drops below **70%** of the initial capacity.
+
+These thresholds were determined based on industry standards and common practices for assessing battery health.
+
+#### Number of Samples for Each Aging Label
+- **Healthy**: There were **63,769** samples classified as `Healthy`, indicating the battery was still functioning well above 85% of its original capacity.
+- **Moderate Aging**: There were **44,521** samples classified as `Moderate Aging`, indicating some capacity degradation but still within an acceptable range for use.
+- **Aged**: There were **176** samples classified as `Aged`, indicating significant degradation with capacity falling below 70% of the original.
+
+These class distributions show that the majority of the samples were either in the `Healthy` or `Moderate Aging` stages, while only a small number of samples were classified as `Aged`. This imbalance in the dataset could influence model performance, especially for the `Aged` class, and is something we took into account during model evaluation and interpretation.
 
 #### Model Training and Evaluation:
 - We used a **Random Forest Classifier** as the primary model for battery aging classification.
