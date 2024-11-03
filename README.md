@@ -4,19 +4,29 @@ This repository contains code and models for simulating battery aging data using
 
 ## Project Overview
 
-This project utilizes PyBAMM (Python Battery Mathematical Modeling) to simulate battery data over different charge and discharge cycles. The goal is to predict the aging stage of the battery using features such as capacity, voltage, time, and other factors.
+This project utilizes PyBAMM (Python Battery Mathematical Modeling) along with real-world battery data collected by Dr. Phillip Kollmeyer and colleagues at McMaster University to simulate battery data over different charge and discharge cycles. The goal is to predict the aging stage of the battery using features such as capacity, voltage, current, and other factors.
+
+### Original Data Source
+
+The dataset used in this project originates from research conducted at McMaster University, Ontario, Canada, and is publicly available on Mendeley Data (link). This data was collected by Dr. Phillip Kollmeyer and colleagues as part of their work on State-of-Charge (SOC) estimation for lithium-ion batteries using a deep feedforward neural network (FNN) approach.
+
+#### Original Data Citation:
+
+Philip Kollmeyer, Carlos Vidal, Mina Naguib, Michael Skells. LG 18650HG2 Li-ion Battery Data and Example Deep Neural Network xEV SOC Estimator Script. Published: March 6, 2020. DOI: 10.17632/cp3473x7xv.3
+
+The data was collected using an LG 18650HG2 battery cell, tested in a thermal chamber and analyzed with a Digatron Universal Battery Tester. The dataset includes various features such as **Voltage [V]**, **Current [A]**, **Temperature [C]**, **Capacity [Ah]**, and **WhAccu [Wh]**.
 
 ### Key Features:
-- **Battery Aging Simulation**: Use PyBAMM to simulate battery behavior over multiple charge-discharge cycles.
-- **Data-Driven Classification**: Train machine learning models to classify battery health into aging stages based on simulated data.
-- **Real-World Application**: The project is designed to support further integration with real-world battery data from manufacturing or testing environments.
+- **Battery Aging Data Simulation**: Combine PyBAMM simulations with real-world battery data to model battery behavior over multiple charge-discharge cycles.
+- **Data-Driven Classification**: Train machine learning models to classify battery health into aging stages based on the combined simulated and real data.
+- **Real-World Application**: The project is designed to support further integration with battery data from real-world manufacturing or testing environments.
 
 ## Folder Structure
 
 - **`data/`**: Contains the generated battery aging data (`battery_aging_data.csv`).
-- **`notebooks/`**: Jupyter notebooks for simulation experiments.
+- **`notebooks/`**: Jupyter notebooks for simulation experiments and data analysis.
 - **`scripts/`**: Python scripts for data generation, model training, and evaluation.
-- **`models/`**: Pre-trained models (e.g., Random Forest) saved for future use.
+- **`models/`**: Pre-trained models (e.g., Random Forest, LSTM) saved for future use.
 - **`requirements.txt`**: Python dependencies required to run the project.
 - **`.gitignore`**: Files and folders to ignore in version control.
 
@@ -29,37 +39,68 @@ Make sure you have Python 3.x installed on your machine. Install the required de
 ```bash
 pip install -r requirements.txt
 ```
-### Experiment Results
 
-For this experiment, we used the **Single Particle Model (SPM)** in PyBAMM and ran a simulation for 10 cycles using the following conditions:
-- **Discharge** at 0.4C until 2.5 V
-- **Rest** for 10 minutes
-- **Charge** at 0.5C until 4.2 V
-- **Hold** at 4.2 V until current drops to 50 mA
-- **Rest** for 10 minutes after charging
+## Experiment Results
 
-#### Observations:
-- **Voltage and Current Patterns**: Both voltage and current showed consistent behavior across the 10 cycles. The voltage varied between 2.5V and 4.2V during charge-discharge cycles, and the current reversed between positive and negative values, indicating proper charge and discharge phases.
-- **Rest Periods**: The battery showed expected behavior during the rest periods, with the current dropping to zero.
-- **Initial Aging Test**: We initially tested for aging over 10 cycles and observed no significant signs of degradation. The voltage and capacity remained stable across the cycles, with no major capacity fade or voltage sag. It is expected that more extensive cycling (e.g., 100 or more cycles) will reveal gradual aging effects such as capacity fade or an increase in internal resistance.
+### Data Source and Experiment Setup
 
+The dataset used in this project originates from research conducted at McMaster University, Ontario, Canada, and is publicly available on Mendeley Data. This data was collected by Dr. Phillip Kollmeyer and colleagues as part of their work on State-of-Charge (SOC) estimation for lithium-ion batteries using a deep feedforward neural network (FNN) approach.
+
+#### Original Data Citation:
+
+Philip Kollmeyer, Carlos Vidal, Mina Naguib, Michael Skells. LG 18650HG2 Li-ion Battery Data and Example Deep Neural Network xEV SOC Estimator Script. Published: March 6, 2020. DOI: 10.17632/cp3473x7xv.3
+
+The data was collected using an LG 18650HG2 battery cell, tested in a thermal chamber and analyzed with a Digatron Universal Battery Tester. The dataset includes various features such as **Voltage [V]**, **Current [A]**, **Temperature [C]**, **Capacity [Ah]**, and **WhAccu [Wh]**.
+
+### Key Experiment Details:
+
+#### Feature Engineering:
+- **Voltage_Avg, Current_Avg, Temperature_Avg**: Calculated average voltage, current, and temperature per step to understand the battery's state in different stages.
+- **Delta_Capacity**: Change in capacity between consecutive steps, used as an indicator of degradation.
+- **Cycle_Count**: Created to represent individual charge-discharge cycles for battery aging classification.
+
+### Machine Learning Model for Aging Classification
+
+The data was used to classify the battery's aging stages into categories such as **Aged**, **Moderate Aging**, and **Healthy**. The features used for the model included:
+- **Voltage [V]**, **Current [A]**, **Temperature [C]**, **Capacity [Ah]**, **Voltage_Avg**, **Current_Avg**, **Temperature_Avg**, **Delta_Capacity**
+
+The target variable for classification was the **Aging_Label**, derived from capacity thresholds to indicate the aging state.
+
+#### Model Training and Evaluation:
+- We used a **Random Forest Classifier** as the primary model for battery aging classification.
+- The data was split using a **time-based split** approach to ensure temporal consistency, with 80% of the data used for training and 20% for testing.
+- The features were **normalized** using **MinMaxScaler**, and the target labels were **encoded** using **LabelEncoder**.
+
+#### Evaluation Metrics:
+- **Classification Report**:
+  - Precision, Recall, and F1-score were nearly perfect for the classes **Healthy** and **Moderate Aging**.
+  - For the **Aged** class, a few misclassifications were observed, but overall performance was still very strong.
+- **Accuracy Score**: **99.99%**, indicating that the model is making almost all predictions correctly.
+- **Confusion Matrix**:
+  - Showed very few false positives and false negatives, especially for the **Aged** class.
+
+### Observations:
+- **Voltage and Current Behavior**: The voltage varied between 2.5V and 4.2V during charge-discharge cycles, and the current reversed between positive and negative values, indicating proper operation.
+- **Aging Trends**: Initially, no significant signs of degradation were observed over a small number of cycles. However, aging effects are expected to become more visible with extended cycling.
 
 ### Plots:
-Below are key plots that were generated from the 10-cycle experiment:
 
-1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the 10 charge-discharge cycles. The consistent pattern indicates stable battery behavior across all cycles.
+1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the charge-discharge cycles. The consistent pattern indicates stable battery behavior in the early stages.
 
    ![Voltage and Current over Time](plots/voltage_current_plot.png)
 
-### Insights:
-- This experiment highlights the stability of the battery over the initial 10 cycles, with no visible degradation.
-- Further testing with extended cycles will be necessary to observe aging trends and to classify the battery into different aging stages (Early, Mid, End).
+### Next Steps:
+
+- **Feature Importance Analysis**: Understand which features contribute the most to the model's predictions.
+- **Cross-Validation**: Evaluate the model using cross-validation to ensure robustness across different subsets of the data.
+- **Extended Cycling**: Run additional simulations and data collection for more cycles to observe gradual aging effects and improve the classification model.
 
 ## Experiment Setup 2: HPPC and OCV Tests
 
-We performed a 10-cycle simulation using **PyBAMM** to model both **HPPC (High-Pulse Power Characterization)** and **OCV (Open Circuit Voltage)** tests. These tests are essential for evaluating battery performance and understanding degradation characteristics. The experiment includes dynamic charge and discharge profiles followed by rest periods, mimicking real-world battery test conditions.
+We performed further simulations using **HPPC (High-Pulse Power Characterization)** and **OCV (Open Circuit Voltage)** tests to evaluate battery performance and understand degradation characteristics. These tests included dynamic charge and discharge profiles followed by rest periods, mimicking real-world battery test conditions.
 
 ### Key Experiment Details:
+
 1. **HPPC Test**:
    - Discharge at 1 A for 10 seconds.
    - Rest for 10 minutes.
@@ -76,28 +117,17 @@ We performed a 10-cycle simulation using **PyBAMM** to model both **HPPC (High-P
    - Rest for 1 hour.
 
 ### Overview of the Tests:
-Battery testing often involves a combination of **HPPC (High-Pulse Power Characterization)**, **Dynamic (DYN)**, and **OCV (Open Circuit Voltage)** tests. These tests are critical for evaluating battery performance under various conditions.
 
-#### 1. High-Pulse Power Characterization (HPPC):
-- **Purpose**: The HPPC test helps to determine the internal resistance of a battery by subjecting it to short, high-power pulses. The voltage response is then used to evaluate the battery's dynamic performance.
-- **Procedure**: In this test, the battery is subjected to a series of controlled discharges and charges with rest periods in between. 
-- **Data Collected**: Voltage, current, and SOC during pulse discharges and recovery periods.
-
-#### 2. Dynamic (DYN) Tests:
-- **Purpose**: DYN tests are designed to mimic the varying power demands a battery would experience in real-world applications such as electric vehicles. These tests involve continuous discharges and charges at varying rates.
-- **Procedure**: The battery is subjected to a dynamic load profile, simulating real-life usage conditions.
-- **Data Collected**: Voltage, current, SOC, and temperature variations during dynamic loading.
-
-#### 3. Open Circuit Voltage (OCV) Tests:
-- **Purpose**: The OCV test is used to measure the relationship between the battery's SOC and its open circuit voltage. It is conducted by charging/discharging the battery to specific SOC levels and allowing the battery to rest in an open circuit condition.
-- **Procedure**: After each charging or discharging step, the battery is allowed to rest to reach equilibrium, and the OCV is recorded.
-- **Data Collected**: SOC vs. OCV, Voltage, and rest time.
+- **HPPC Test**: Used to determine internal resistance by subjecting the battery to high-power pulses and measuring voltage response.
+- **Dynamic (DYN) Tests**: Simulate real-world power demands to observe battery behavior under dynamic loading.
+- **OCV Test**: Measure the relationship between SOC and open circuit voltage, capturing data after each rest period to understand equilibrium behavior.
 
 ### Simulation Results:
-- The simulation was run for 10 cycles, combining both HPPC and OCV tests to track battery performance over time.
-- Results include **Voltage**, **Current**, **SOC (State of Charge)**, and **Temperature** data at each time step.
-- The results were saved as a CSV file and can be used for further analysis to classify battery aging stages based on the simulated data.
+
+- **HPPC and OCV Data**: Data collected from these tests include **Voltage**, **Current**, **SOC (State of Charge)**, and **Temperature** over time.
+- These results will be used in further training to improve the aging classification model.
 
 ### Next Steps:
-- These test results will be fed into machine learning models to classify battery aging stages.
-- The HPPC and OCV tests simulate real-world battery conditions, which helps in building a robust aging classification model.
+
+- **Integrate New Data**: Use data from HPPC and OCV tests to enrich the training dataset.
+- **Model Optimization**: Tune hyperparameters and test additional machine learning algorithms to improve classification accuracy.
