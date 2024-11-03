@@ -97,9 +97,19 @@ These class distributions show that the majority of the samples were either in t
 
 ### Plots:
 
-1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the charge-discharge cycles. The consistent pattern indicates stable battery behavior in the early stages.
+1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the 10 charge-discharge cycles. The consistent pattern indicates stable battery behavior across all cycles.
 
    ![Voltage and Current over Time](plots/voltage_current_plot.png)
+
+2. **Voltage, Current, and Aging Stage Over Time**: The following plot provides a comprehensive view of how the **voltage** and **current** evolve over time along with the **actual and predicted aging stages**.
+
+   ![Voltage, Current, and Aging Stage Over Time](plots/voltage_current_aging_plot.png)
+
+   - **Voltage Over Time**: Voltage variations show typical charge and discharge cycles, with fluctuations observed over the experimental period. The voltage fluctuates between 2.5V and 4.2V, indicating normal battery operation.
+   - **Current Over Time**: Current also shows the expected patterns of charging (positive values) and discharging (negative values) throughout the cycles.
+   - **Aging Stage Over Time**: The bottom plot shows both the **actual aging stage** (solid blue line) and the **predicted aging stage** (dashed red line) over time. The predicted values closely match the actual values, demonstrating the model's ability to accurately predict the battery's aging stages.
+   - **Key Insight**: The model is performing well, especially in identifying the transitions between aging stages. There are occasional mismatches, particularly during rapid transitions, but overall the predicted aging stage follows the actual trend effectively. This consistency across both `Healthy`, `Moderate Aging`, and `Aged` stages shows that the model has successfully learned the aging patterns from the data.
+
 
 ### Next Steps:
 
