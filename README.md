@@ -1,11 +1,13 @@
-# Battery Aging Classification using PyBAMM
+# Battery Aging Classification
 
-This repository contains code and models for simulating battery aging data using PyBAMM and classifying the aging stages (Early, Mid, End) using machine learning algorithms.
+This repository contains code and models for classifying the aging stages (Early, Mid, End) of batteries using real-world data and machine learning algorithms.
 
 ## Project Overview
 
-This project utilizes PyBAMM (Python Battery Mathematical Modeling) along with real-world battery data collected by Dr. Phillip Kollmeyer and colleagues at McMaster University to simulate battery data over different charge and discharge cycles. The goal is to predict the aging stage of the battery using features such as capacity, voltage, current, and other factors.
+This project utilizes real-world battery data collected by Dr. Phillip Kollmeyer and colleagues at McMaster University to predict the aging stage of the battery. The goal is to classify the battery's health into different aging stages using features such as capacity, voltage, current, and other factors.
 
+### Note
+While PyBAMM (Python Battery Mathematical Modeling) is a potential tool for future data simulation, this project currently focuses solely on the original experimental data collected at McMaster University.
 ### Original Data Source
 
 The dataset used in this project originates from research conducted at McMaster University, Ontario, Canada, and is publicly available on Mendeley Data (link). This data was collected by Dr. Phillip Kollmeyer and colleagues as part of their work on State-of-Charge (SOC) estimation for lithium-ion batteries using a deep feedforward neural network (FNN) approach.
