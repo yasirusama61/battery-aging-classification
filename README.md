@@ -121,6 +121,35 @@ These labels were assigned using standard binning practices to ensure that the c
 
 These class distributions show that the majority of the samples were in the `Healthy` stage, with fewer samples classified as `Moderate Aging` and `Aged`. The confusion matrix demonstrates that the model performed exceptionally well for `Healthy` and `Moderate Aging` classes, with minimal misclassifications. However, there was a very small number of misclassifications for the `Aged` class, indicating an area for further optimization.
 
+### Handling Class Imbalance with Stratified Sampling
+
+To address the class imbalance in the dataset, stratified sampling was used when splitting the data into training and testing sets. This method ensures that each class is represented proportionally in both the training and testing datasets, maintaining the original distribution of the labels.
+
+#### Stratified Sampling Formula
+Stratified sampling can be represented as:
+
+\[
+n_i = \frac{N_i}{N} \times n
+\]
+
+Where:
+- \( n_i \) is the number of samples to be taken from class \( i \),
+- \( N_i \) is the total number of samples in class \( i \),
+- \( N \) is the total number of samples in the dataset,
+- \( n \) is the total number of samples needed for the subset (e.g., training or testing set).
+
+#### Illustration of Stratified Sampling
+
+Below is a diagram illustrating how stratified sampling works:
+
+![Stratified Sampling Illustration](plots/stratified_sampling_diagram.png)
+
+*In the diagram, the full dataset is divided into stratified subsets for training and testing, preserving the proportion of each class.*
+
+By using stratified sampling, we can better evaluate the model's performance across all classes, especially the minority class (e.g., `Aged`), which is often underrepresented in imbalanced datasets. This approach helps the model learn from a more balanced representation of the data, improving its ability to generalize and make accurate predictions for all classes during testing.
+
+The data split maintained an 80-20 ratio between training and testing sets, with stratification ensuring that the relative proportions of **Healthy**, **Moderate Aging**, and **Aged** categories were consistent in both subsets.
+
 #### Confusion Matrix Insights
 - The model accurately predicted **95,360** instances as `Healthy`, showing its strength in identifying this class with no false negatives or positives.
 - **6,412** instances of `Moderate Aging` were correctly identified, with no misclassifications in this category.
