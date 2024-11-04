@@ -190,6 +190,8 @@ These choices ensure that the model not only performs well but also handles the 
 - **Confusion Matrix**:
   - Showed very few false positives and false negatives, especially for the **Aged** class.
 
+![Confusion_matrix](plots/confusion_matrix.png)
+
 ### Explanation of Cross-Validation Results
 
 1. **Cross-Validation Setup**:
