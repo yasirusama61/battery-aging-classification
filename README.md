@@ -165,6 +165,23 @@ This near-perfect performance highlights the model's robustness and its ability 
 - The data was split using a **time-based split** approach to ensure temporal consistency, with 80% of the data used for training and 20% for testing.
 - The features were **normalized** using **MinMaxScaler**, and the target labels were **encoded** using **LabelEncoder**.
 
+#### Model Initialization and Training
+The Random Forest classifier was initialized with parameters that ensure effective learning and robustness:
+- **`n_estimators=100`** was used to specify the number of trees in the forest, which helps in stabilizing and improving the model’s performance by reducing variance.
+- **`random_state=42`** was set to ensure reproducibility. This makes the results consistent across multiple runs by controlling the random number generation used by the model.
+- **`class_weight='balanced'`** was applied to handle class imbalance in the dataset. This adjustment ensures that the model pays more attention to the underrepresented classes (e.g., `Aged`), which is crucial for improving the prediction performance for minority classes. The `balanced` setting adjusts the weights inversely proportional to the class frequencies, helping the model avoid bias toward the majority class.
+
+Below is an image showing the configuration of the `RandomForestClassifier` used in the project:
+
+![Random Forest Classifier Configuration](plots/image.png)
+
+#### Why Use a Random Forest Classifier?
+- **Robustness**: The Random Forest algorithm is effective for capturing complex, non-linear relationships and interactions between features, making it suitable for real-world battery data.
+- **Feature Importance**: It provides insights into the relative importance of different features in the classification process, aiding interpretability and further feature engineering.
+- **Class Imbalance Handling**: The `class_weight='balanced'` parameter helps the model give appropriate attention to minority classes, improving its ability to correctly classify all stages, including the less common `Aged` class.
+
+These choices ensure that the model not only performs well but also handles the class distribution effectively, leading to better generalization and fairness in predictions.
+
 #### Evaluation Metrics:
 - **Classification Report**:
   - Precision, Recall, and F1-score were nearly perfect for the classes **Healthy** and **Moderate Aging**.
