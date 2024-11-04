@@ -59,6 +59,45 @@ The data was collected using an LG 18650HG2 battery cell, tested in a thermal ch
 - **Delta_Capacity**: Change in capacity between consecutive steps, used as an indicator of degradation.
 - **Cycle_Count**: Created to represent individual charge-discharge cycles for battery aging classification.
 
+### Analysis of Training and Testing Data Plots
+
+The plots provide an overview of how key features vary over time during both the training and testing phases for battery aging classification.
+
+1. **Voltage [V]**:
+   - The voltage data shows consistent fluctuations typical of charging and discharging cycles.
+   - There is a clear difference in the density and continuity of the data between the training (blue) and testing (orange) phases, with testing data appearing more sporadic.
+
+2. **Current [A]**:
+   - The current data demonstrates periodic changes between positive (charging) and negative (discharging) values.
+   - The testing data maintains similar behavior to the training data but is more segmented, indicating distinct testing periods.
+
+3. **Temperature [C]**:
+   - Temperature remains relatively stable during training with a few transitions, whereas testing data shows sudden, more frequent changes.
+   - This variability could be due to different environmental or operational conditions during the testing phase.
+
+4. **Capacity [Ah]**:
+   - Capacity shows declining trends, indicative of the battery's discharge cycles.
+   - The testing phase data highlights significant drops and recoveries, which align with battery testing protocols.
+
+5. **Voltage_Avg and Current_Avg**:
+   - These average values help smooth out the raw fluctuations seen in the voltage and current data.
+   - The trends are consistent between training and testing, though the testing data exhibits more abrupt transitions.
+
+6. **Temperature_Avg**:
+   - The average temperature data during training is consistent, reflecting gradual changes, while the testing phase exhibits sharper changes, suggesting more dynamic testing conditions.
+
+7. **Delta_Capacity**:
+   - Delta capacity measures the change between consecutive capacity readings, showing sharp drops and rises in both phases.
+   - The pattern suggests different load and usage profiles in training versus testing, possibly indicating varying stress levels on the battery.
+
+### Key Observations:
+- The testing data generally displays more discrete and segmented changes compared to the smoother, continuous nature of the training data.
+- This difference may point to controlled, varied testing conditions that simulate real-world battery usage more rigorously.
+- Understanding these variations is crucial for ensuring that the machine learning model generalizes well to unseen, varied battery conditions during testing.
+
+### Plot of Training and Testing Data
+![Training and Testing Data](plots/training_testing_plot.png)
+
 ### Machine Learning Model for Aging Classification
 
 The data was used to classify the battery's aging stages into categories such as **Aged**, **Moderate Aging**, and **Healthy**. The features used for the model included:
