@@ -153,13 +153,6 @@ By using stratified sampling, we can better evaluate the model's performance acr
 
 The data split maintained an 80-20 ratio between training and testing sets, with stratification ensuring that the relative proportions of **Healthy**, **Moderate Aging**, and **Aged** categories were consistent in both subsets.
 
-#### Confusion Matrix Insights
-- The model accurately predicted **95,360** instances as `Healthy`, showing its strength in identifying this class with no false negatives or positives.
-- **6,412** instances of `Moderate Aging` were correctly identified, with no misclassifications in this category.
-- The `Aged` class had **6,693** correct predictions with only **1** misclassification, indicating the model's strong performance even in this minority class.
-
-This near-perfect performance highlights the model's robustness and its ability to generalize well across all aging stages.
-
 #### Model Training and Evaluation:
 - We used a **Random Forest Classifier** as the primary model for battery aging classification.
 - The data was split using a **time-based split** approach to ensure temporal consistency, with 80% of the data used for training and 20% for testing.
@@ -179,6 +172,13 @@ Below is an image showing the configuration of the `RandomForestClassifier` used
 - **Robustness**: The Random Forest algorithm is effective for capturing complex, non-linear relationships and interactions between features, making it suitable for real-world battery data.
 - **Feature Importance**: It provides insights into the relative importance of different features in the classification process, aiding interpretability and further feature engineering.
 - **Class Imbalance Handling**: The `class_weight='balanced'` parameter helps the model give appropriate attention to minority classes, improving its ability to correctly classify all stages, including the less common `Aged` class.
+
+#### Confusion Matrix Insights
+- The model accurately predicted **95,360** instances as `Healthy`, showing its strength in identifying this class with no false negatives or positives.
+- **6,412** instances of `Moderate Aging` were correctly identified, with no misclassifications in this category.
+- The `Aged` class had **6,693** correct predictions with only **1** misclassification, indicating the model's strong performance even in this minority class.
+
+This near-perfect performance highlights the model's robustness and its ability to generalize well across all aging stages.
 
 These choices ensure that the model not only performs well but also handles the class distribution effectively, leading to better generalization and fairness in predictions.
 
