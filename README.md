@@ -8,6 +8,7 @@ This project utilizes real-world battery data collected by Dr. Phillip Kollmeyer
 
 ### Note
 While PyBAMM (Python Battery Mathematical Modeling) is a potential tool for future data simulation, this project currently focuses solely on the original experimental data collected at McMaster University.
+
 ### Original Data Source
 
 The dataset used in this project originates from research conducted at McMaster University, Ontario, Canada, and is publicly available on Mendeley Data (link). This data was collected by Dr. Phillip Kollmeyer and colleagues as part of their work on State-of-Charge (SOC) estimation for lithium-ion batteries using a deep feedforward neural network (FNN) approach.
@@ -193,17 +194,9 @@ This near-perfect performance highlights the model's robustness and its ability 
 
 These results collectively point to a robust model that is well-tuned and effective for battery aging classification.
 
-### Observations:
-- **Voltage and Current Behavior**: The voltage varied between 2.5V and 4.2V during charge-discharge cycles, and the current reversed between positive and negative values, indicating proper operation.
-- **Aging Trends**: Initially, no significant signs of degradation were observed over a small number of cycles. However, aging effects are expected to become more visible with extended cycling.
-
 ### Plots:
 
-1. **Voltage and Current vs. Time**: This plot shows the voltage and current behavior during the 10 charge-discharge cycles. The consistent pattern indicates stable battery behavior across all cycles.
-
-   ![Voltage and Current over Time](plots/voltage_current_plot.png)
-
-2. **Voltage, Current, and Aging Stage Over Time**: The following plot provides a comprehensive view of how the **voltage** and **current** evolve over time along with the **actual and predicted aging stages**.
+1. **Voltage, Current, and Aging Stage Over Time**: The following plot provides a comprehensive view of how the **voltage** and **current** evolve over time along with the **actual and predicted aging stages**.
 
    ![Voltage, Current, and Aging Stage Over Time](plots/voltage_current_aging_plot.png)
 
@@ -212,11 +205,9 @@ These results collectively point to a robust model that is well-tuned and effect
    - **Aging Stage Over Time**: The bottom plot shows both the **actual aging stage** (solid blue line) and the **predicted aging stage** (dashed red line) over time. The predicted values closely match the actual values, demonstrating the model's ability to accurately predict the battery's aging stages.
    - **Key Insight**: The model is performing well, especially in identifying the transitions between aging stages. There are occasional mismatches, particularly during rapid transitions, but overall the predicted aging stage follows the actual trend effectively. This consistency across both `Healthy`, `Moderate Aging`, and `Aged` stages shows that the model has successfully learned the aging patterns from the data.
 
-
 ### Next Steps:
 
 - **Feature Importance Analysis**: Understand which features contribute the most to the model's predictions.
-- **Cross-Validation**: Evaluate the model using cross-validation to ensure robustness across different subsets of the data.
 - **Extended Cycling**: Run additional simulations and data collection for more cycles to observe gradual aging effects and improve the classification model.
 
 ## Experiment Setup 2: HPPC and OCV Tests
