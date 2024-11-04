@@ -103,12 +103,16 @@ The plots provide an overview of how key features vary over time during both the
 The data was used to classify the battery's aging stages into categories such as **Aged**, **Moderate Aging**, and **Healthy**. The features used for the model included:
 - **Voltage [V]**, **Current [A]**, **Temperature [C]**, **Capacity [Ah]**, **Voltage_Avg**, **Current_Avg**, **Temperature_Avg**, **Delta_Capacity**
 
-The target variable for classification was the **Aging_Label**, derived from capacity thresholds to indicate the aging state. Specifically:
-- **Healthy**: The battery is considered healthy when its capacity is above **85%** of the initial capacity.
-- **Moderate Aging**: The battery is classified as moderately aged when the capacity drops between **70% and 85%** of the initial capacity.
-- **Aged**: The battery is classified as aged when the capacity drops below **70%** of the initial capacity.
+#### Calculation of Initial Capacity
+To establish the initial capacity of the battery, data points representing a fully charged state were identified. This was done by selecting moments when the voltage was above 4.1V and the current was zero, indicating the battery was at full charge. The first available capacity value from this state was used as the initial capacity reference, which was **2.76248 Ah**. This initial capacity served as a baseline for classifying the battery's health during subsequent charge-discharge cycles.
 
-These thresholds were determined based on industry standards and common practices for assessing battery health.
+#### Labeling the Data
+The target variable, **Aging_Label**, was created by categorizing the battery capacity into different aging stages relative to the initial capacity:
+- **Healthy**: When the battery capacity was above **85%** of the initial capacity (greater than 2.34811 Ah), indicating minimal degradation.
+- **Moderate Aging**: When the capacity dropped between **70% and 85%** of the initial capacity (between 1.93374 Ah and 2.34811 Ah), suggesting some level of degradation but still within acceptable performance limits.
+- **Aged**: When the capacity fell below **70%** of the initial capacity (less than 1.93374 Ah), indicating significant degradation.
+
+These labels were assigned using standard binning practices to ensure that the classification accurately reflected the battery's health status over time. The thresholds were determined based on industry best practices for battery health assessment, providing a clear and consistent method for categorizing the battery's aging stages.
 
 #### Number of Samples for Each Aging Label
 - **Healthy**: There were **95,360** samples classified as `Healthy`, indicating the battery was still functioning well above 85% of its original capacity.
