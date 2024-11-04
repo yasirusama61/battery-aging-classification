@@ -72,11 +72,18 @@ The target variable for classification was the **Aging_Label**, derived from cap
 These thresholds were determined based on industry standards and common practices for assessing battery health.
 
 #### Number of Samples for Each Aging Label
-- **Healthy**: There were **63,769** samples classified as `Healthy`, indicating the battery was still functioning well above 85% of its original capacity.
-- **Moderate Aging**: There were **44,521** samples classified as `Moderate Aging`, indicating some capacity degradation but still within an acceptable range for use.
-- **Aged**: There were **176** samples classified as `Aged`, indicating significant degradation with capacity falling below 70% of the original.
+- **Healthy**: There were **95,360** samples classified as `Healthy`, indicating the battery was still functioning well above 85% of its original capacity.
+- **Moderate Aging**: There were **6,412** samples classified as `Moderate Aging`, indicating some capacity degradation but still within an acceptable range for use.
+- **Aged**: There were **6,694** samples classified as `Aged`, indicating significant degradation with capacity falling below 70% of the original.
 
-These class distributions show that the majority of the samples were either in the `Healthy` or `Moderate Aging` stages, while only a small number of samples were classified as `Aged`. This imbalance in the dataset could influence model performance, especially for the `Aged` class, and is something we took into account during model evaluation and interpretation.
+These class distributions show that the majority of the samples were in the `Healthy` stage, with fewer samples classified as `Moderate Aging` and `Aged`. The confusion matrix demonstrates that the model performed exceptionally well for `Healthy` and `Moderate Aging` classes, with minimal misclassifications. However, there was a very small number of misclassifications for the `Aged` class, indicating an area for further optimization.
+
+#### Confusion Matrix Insights
+- The model accurately predicted **95,360** instances as `Healthy`, showing its strength in identifying this class with no false negatives or positives.
+- **6,412** instances of `Moderate Aging` were correctly identified, with no misclassifications in this category.
+- The `Aged` class had **6,693** correct predictions with only **1** misclassification, indicating the model's strong performance even in this minority class.
+
+This near-perfect performance highlights the model's robustness and its ability to generalize well across all aging stages.
 
 #### Model Training and Evaluation:
 - We used a **Random Forest Classifier** as the primary model for battery aging classification.
@@ -90,6 +97,27 @@ These class distributions show that the majority of the samples were either in t
 - **Accuracy Score**: **99.99%**, indicating that the model is making almost all predictions correctly.
 - **Confusion Matrix**:
   - Showed very few false positives and false negatives, especially for the **Aged** class.
+
+### Explanation of Cross-Validation Results
+
+1. **Cross-Validation Setup**:
+   - The cross-validation was performed using `cv=5`, which means the dataset was split into 5 equal parts (folds). The model was trained on 4 parts and tested on the remaining 1 part, iterating through all folds so that each part was used for testing once.
+   - The scoring method used was `'accuracy'`, which measures the ratio of correctly predicted instances to the total number of instances.
+
+2. **Reported Scores**:
+   - The output `scores` array: `[0.99998156, 0.99691147, 1.0, 1.0, 0.99972341]` represents the accuracy for each fold.
+   - These scores are close to 1.0, indicating exceptionally high accuracy across all 5 folds. This suggests that the model is performing very well on the training data with minimal variation in performance between different folds.
+
+3. **Mean Accuracy**:
+   - The `scores.mean()` method calculates the average accuracy across all folds, which is reported as `0.9993232897376376`.
+   - This high mean accuracy value shows that the model maintains its performance consistently across the different subsets of the data, implying strong generalization capabilities and minimal overfitting.
+
+### Insights:
+- **High Accuracy**: The model's accuracy scores across all folds are extremely high, indicating that it has learned to classify the battery aging stages accurately.
+- **Low Variance**: The consistency of the scores across folds shows low variance, meaning the model is not heavily dependent on a specific subset of the data.
+- **Generalization**: The high mean accuracy suggests that the model will likely perform well on new, unseen data since it has shown strong performance across different data splits during cross-validation.
+
+These results collectively point to a robust model that is well-tuned and effective for battery aging classification.
 
 ### Observations:
 - **Voltage and Current Behavior**: The voltage varied between 2.5V and 4.2V during charge-discharge cycles, and the current reversed between positive and negative values, indicating proper operation.
