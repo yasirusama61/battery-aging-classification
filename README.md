@@ -231,32 +231,36 @@ These results collectively point to a robust model that is well-tuned and effect
 
 ### Feature Importance Analysis
 
-The Random Forest model was analyzed to determine which features were most influential in predicting battery aging stages. Below are the insights from the feature importance analysis:
+The Random Forest model identified the most influential features for predicting battery aging stages:
 
-1. **Capacity [Ah]**: The most important feature, significantly contributing to the model's predictions.
-   - **Insight**: Capacity degradation is directly related to battery aging, making it a key indicator for distinguishing between healthy, moderately aged, and aged batteries.
+1. **Capacity [Ah]**: The most critical feature for aging prediction, directly linked to battery health.
+2. **Voltage [V]**: Provides essential insights into battery efficiency over time.
+3. **Current [A] and Voltage_Avg**: Moderate importance, reflecting charge-discharge efficiency and resistance.
+4. **Temperature [C] and Temperature_Avg**: Lower impact on predictions; enhancing temperature features may improve results.
 
-2. **Voltage [V]**: Ranked as the second most important feature.
-   - **Insight**: Voltage behavior during charge-discharge cycles provides critical information regarding the battery's health. Voltage fluctuations reflect changes in battery efficiency over time.
+#### Actionable Insights
+- **Feature Optimization**: Focus on `Capacity [Ah]`, `Voltage [V]`, and `Current [A]`. Removing less impactful features like `Temperature_Avg` and `Delta_Capacity` may simplify the model.
+- **Temperature Data Enhancement**: Consider advanced temperature metrics for improved performance.
+- **Model Simplification**: A simpler model focusing on capacity and voltage may be effective.
 
-3. **Current [A] and Voltage_Avg**: Moderate influence on the model's prediction.
-   - **Insight**: Both current behavior and average voltage provide insights into the battery’s charge-discharge efficiency and internal resistance, indicating potential aging effects.
+#### Feature Importance Table
 
-4. **Temperature [C] and Temperature_Avg**: Lower impact on classification.
-   - **Insight**: Temperature influences battery chemistry and aging; however, its impact in this model is not as pronounced as capacity and voltage. It may be beneficial to explore more temperature-specific features.
-
-#### Actionable Insights:
-- **Feature Optimization**: Focus on `Capacity [Ah]`, `Voltage [V]`, and `Current [A]` for future iterations. Reducing less impactful features like `Temperature_Avg` and `Delta_Capacity` could simplify the model without significantly compromising accuracy.
-- **Temperature Data Enhancement**: Consider enhancing temperature features (e.g., rate of change) to determine if more detailed temperature metrics could improve model performance.
-- **Model Simplification**: With capacity being the dominant feature, a simpler model could be explored that primarily utilizes capacity and voltage, potentially reducing computational costs.
-
-The feature importance analysis helps to refine the model by focusing on features that offer the most predictive power, enabling efficient and accurate classification of battery aging stages.
+| Feature           | Importance Score |
+|-------------------|------------------|
+| Capacity [Ah]     | 0.5436           |
+| Voltage [V]       | 0.1343           |
+| Voltage_Avg       | 0.0878           |
+| Current_Avg       | 0.0689           |
+| Current [A]       | 0.0623           |
+| Temperature [C]   | 0.0447           |
+| Delta_Capacity    | 0.0391           |
+| Temperature_Avg   | 0.0193           |
 
 #### Feature Importance Plot
-Below is the plot showing the importance of each feature used in the battery aging classification model:
 
 ![Feature Importance in Battery Aging Classification](plots/feature_importance_plot.png)
 
+This analysis helps refine feature selection, focusing on the factors that most influence battery aging.
 
 ## Experiment Setup 2: HPPC and OCV Tests
 
