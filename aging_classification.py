@@ -103,12 +103,19 @@ plt.show()
 importances = model.feature_importances_
 feature_names = features.columns
 
+# Plot feature importance
 plt.figure(figsize=(10, 6))
 plt.barh(feature_names, importances, color='teal')
 plt.title('Feature Importance in Battery Aging Classification')
 plt.xlabel('Importance')
 plt.ylabel('Features')
 plt.show()
+
+# Print feature importance as a DataFrame
+feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+print("\nFeature Importance:")
+print(feature_importance_df)
 
 # Save the model and scaler for future use
 import joblib
