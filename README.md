@@ -245,25 +245,26 @@ The Random Forest model identified the most influential features for predicting 
 
 #### Feature Importance Table
 
-| **Feature**       | **Importance Score**  | Description                                            |
-|-------------------|-----------------------|--------------------------------------------------------|
-| **Capacity [Ah]** | ⭐ **0.5436**          | The most crucial factor for predicting battery aging.  |
-| **Voltage [V]**   | ⭐⭐ **0.1343**         | Reflects battery efficiency over time.                 |
-| **Voltage_Avg**   | ⭐⭐ **0.0878**         | Average voltage, moderately important.                 |
-| **Current_Avg**   | ⭐⭐ **0.0689**         | Represents charging/discharging trends.                |
-| **Current [A]**   | ⭐⭐ **0.0623**         | Indicates charge-discharge behavior.                   |
-| **Temperature [C]** | ⭐ **0.0447**        | Has some impact on battery health.                     |
-| **Delta_Capacity** | ⭐ **0.0391**         | Measures capacity change, minor importance.            |
-| **Temperature_Avg** | ⭐ **0.0193**        | The least impactful feature.                           |
+| **Feature**        | **Importance Score**  | **Description**                                         |
+|--------------------|-----------------------|---------------------------------------------------------|
+| **Capacity [Ah]**  | ⭐⭐⭐ **0.5436**        | The most crucial factor for predicting battery aging.   |
+| **Voltage [V]**    | ⭐⭐ **0.1343**         | Reflects battery efficiency over time.                  |
+| **Voltage_Avg**    | ⭐⭐ **0.0878**         | Average voltage, moderately important.                  |
+| **Current_Avg**    | ⭐⭐ **0.0689**         | Represents charging/discharging trends.                 |
+| **Current [A]**    | ⭐⭐ **0.0623**         | Indicates charge-discharge behavior.                    |
+| **Temperature [C]**| ⭐ **0.0447**          | Has some impact on battery health.                      |
+| **Delta_Capacity** | ⭐ **0.0391**          | Measures capacity change, minor importance.             |
+| **Temperature_Avg**| ⭐ **0.0193**          | The least impactful feature.                            |
 
 - **⭐**: Low importance, **⭐⭐**: Moderate importance, **⭐⭐⭐**: High importance.
 
 #### Key Insights:
 - **Capacity [Ah]** is the dominant feature, making it highly influential for aging predictions.
 - **Voltage [V]** and **Current [A]** also contribute significantly, providing insights into battery efficiency.
-- Temperature features showed a lower impact, indicating that more refined temperature metrics might be needed.
+- Temperature features showed a lower impact, suggesting the need for more refined temperature metrics.
 
-This polished table gives a visually enhanced representation of the feature importance, highlighting the key aspects and importance levels for each feature.
+This polished table provides a visually clear representation of feature importance, with accurate star ratings that reflect each feature's significance.
+
 #### Feature Importance Plot
 
 ![Feature Importance in Battery Aging Classification](plots/feature_importance_plot.png)
