@@ -271,6 +271,46 @@ This polished table provides a visually clear representation of feature importan
 
 This analysis helps refine feature selection, focusing on the factors that most influence battery aging.
 
+### Feature Optimization and Retraining Results
+
+After performing feature selection using Recursive Feature Elimination with Cross-Validation (RFECV), it was determined that **Voltage [V]** and **Capacity [Ah]** were the most significant features for predicting battery aging stages. A model was retrained using only these two features, significantly simplifying the complexity while retaining strong predictive capabilities.
+
+#### Retraining Results
+
+The retrained model using only the two features—**Voltage [V]** and **Capacity [Ah]**—yielded excellent results:
+
+- **Accuracy Score**: **99.998%**, indicating nearly perfect classification performance.
+- **Precision, Recall, and F1-score**: All were close to **1.00**, demonstrating outstanding model performance across all aging classes.
+
+| Metric           | Class 0 (Aged) | Class 1 (Moderate Aging) | Class 2 (Healthy) | Average   |
+|------------------|---------------|--------------------------|-------------------|-----------|
+| **Precision**    | 1.00          | 1.00                     | 1.00              | 1.00      |
+| **Recall**       | 1.00          | 1.00                     | 1.00              | 1.00      |
+| **F1-Score**     | 1.00          | 1.00                     | 1.00              | 1.00      |
+| **Support**      | 46227         | 3014                     | 3996              | 53237     |
+
+#### Confusion Matrix
+
+The confusion matrix below shows minimal misclassifications, with only **one** misclassified sample out of over **53,000** samples.
+
+| True \ Predicted | Aged (0) | Moderate Aging (1) | Healthy (2) |
+|------------------|----------|---------------------|-------------|
+| **Aged (0)**     | 46227    | 0                   | 0           |
+| **Moderate (1)** | 0        | 3013                | 1           |
+| **Healthy (2)**  | 0        | 0                   | 3996        |
+
+#### Key Takeaways
+
+1. **Feature Simplification**: Reducing the features to just **Voltage [V]** and **Capacity [Ah]** proved to be effective, resulting in a simpler yet highly accurate model. This can significantly improve computational efficiency and deployment ease.
+  
+2. **Model Performance**: The model achieved **99.998%** accuracy, demonstrating its capability to distinguish between aging stages accurately. Despite reducing the number of features from eight to two, the model maintained almost perfect predictive power.
+
+#### Next Steps:
+
+- **Deploy the Model**: Given the high accuracy and reduced complexity, the model is well-suited for deployment. The simplified feature set ensures faster computation and easier integration.
+- **Cross-Dataset Validation**: Further testing on additional datasets is recommended to confirm the model's ability to generalize to other battery types and conditions.
+- **Feature Importance Confirmation**: Capacity [Ah] and Voltage [V] were proven to be the most influential, reaffirming their importance for battery aging classification. Future work can explore if these two features alone can be used for other battery chemistries or configurations.
+
 ## Experiment Setup 2: HPPC and OCV Tests
 
 We performed further simulations using **HPPC (High-Pulse Power Characterization)** and **OCV (Open Circuit Voltage)** tests to evaluate battery performance and understand degradation characteristics. These tests included dynamic charge and discharge profiles followed by rest periods, mimicking real-world battery test conditions.
