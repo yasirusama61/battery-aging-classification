@@ -245,17 +245,25 @@ The Random Forest model identified the most influential features for predicting 
 
 #### Feature Importance Table
 
-| Feature           | Importance Score |
-|-------------------|------------------|
-| Capacity [Ah]     | 0.5436           |
-| Voltage [V]       | 0.1343           |
-| Voltage_Avg       | 0.0878           |
-| Current_Avg       | 0.0689           |
-| Current [A]       | 0.0623           |
-| Temperature [C]   | 0.0447           |
-| Delta_Capacity    | 0.0391           |
-| Temperature_Avg   | 0.0193           |
+| **Feature**       | **Importance Score**  | Description                                            |
+|-------------------|-----------------------|--------------------------------------------------------|
+| **Capacity [Ah]** | ⭐ **0.5436**          | The most crucial factor for predicting battery aging.  |
+| **Voltage [V]**   | ⭐⭐ **0.1343**         | Reflects battery efficiency over time.                 |
+| **Voltage_Avg**   | ⭐⭐ **0.0878**         | Average voltage, moderately important.                 |
+| **Current_Avg**   | ⭐⭐ **0.0689**         | Represents charging/discharging trends.                |
+| **Current [A]**   | ⭐⭐ **0.0623**         | Indicates charge-discharge behavior.                   |
+| **Temperature [C]** | ⭐ **0.0447**        | Has some impact on battery health.                     |
+| **Delta_Capacity** | ⭐ **0.0391**         | Measures capacity change, minor importance.            |
+| **Temperature_Avg** | ⭐ **0.0193**        | The least impactful feature.                           |
 
+- **⭐**: Low importance, **⭐⭐**: Moderate importance, **⭐⭐⭐**: High importance.
+
+#### Key Insights:
+- **Capacity [Ah]** is the dominant feature, making it highly influential for aging predictions.
+- **Voltage [V]** and **Current [A]** also contribute significantly, providing insights into battery efficiency.
+- Temperature features showed a lower impact, indicating that more refined temperature metrics might be needed.
+
+This polished table gives a visually enhanced representation of the feature importance, highlighting the key aspects and importance levels for each feature.
 #### Feature Importance Plot
 
 ![Feature Importance in Battery Aging Classification](plots/feature_importance_plot.png)
