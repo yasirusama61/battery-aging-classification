@@ -275,6 +275,16 @@ This analysis helps refine feature selection, focusing on the factors that most 
 
 After performing feature selection using Recursive Feature Elimination with Cross-Validation (RFECV), it was determined that **Voltage [V]** and **Capacity [Ah]** were the most significant features for predicting battery aging stages. A model was retrained using only these two features, significantly simplifying the complexity while retaining strong predictive capabilities.
 
+#### Feature Optimization Technique:
+
+- **Recursive Feature Elimination (RFE)** was used in combination with a Random Forest model to rank and select features.
+- **Cross-Validation**: The RFE process was coupled with cross-validation to ensure the selected features generalized well to unseen data.
+- The process revealed that **Voltage [V]** and **Capacity [Ah]** were the only two features necessary for optimal battery aging classification, significantly reducing the original feature set from eight to two.
+
+Below is the flow chart explaining how the loop works for RFE:
+
+![Recursive Feature Elimination (RFE) flowchart](plots/RF_flowchart.png)
+
 #### Retraining Results
 
 The retrained model using only the two features—**Voltage [V]** and **Capacity [Ah]**—yielded excellent results:
