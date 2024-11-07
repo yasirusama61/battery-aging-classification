@@ -324,3 +324,31 @@ The confusion matrix below shows minimal misclassifications, with only **one** m
 - **Deploy the Model**: Given the high accuracy and reduced complexity, the model is well-suited for deployment. The simplified feature set ensures faster computation and easier integration.
 - **Cross-Dataset Validation**: Further testing on additional datasets is recommended to confirm the model's ability to generalize to other battery types and conditions.
 - **Feature Importance Confirmation**: Capacity [Ah] and Voltage [V] were proven to be the most influential, reaffirming their importance for battery aging classification. Future work can explore if these two features alone can be used for other battery chemistries or configurations.
+
+## Deployment Using Docker
+
+To deploy the Battery Aging Classification model as an API using Docker, follow these steps:
+
+### Step 1: Build the Docker Image
+
+First, make sure that you have Docker installed and running on your system.
+
+To build the Docker image for the Battery Aging Classification API, navigate to the project directory and run the following command:
+
+```sh
+docker build -t battery-aging-api .
+```
+This command will use the Dockerfile in the directory to build an image called `battery-aging-api.`
+
+![Docker deployment](plots/docker_deployment.png)
+
+### Step 2: Run the Docker Container
+After successfully building the image, you can run the Docker container using the command:
+
+```sh
+docker run -d -p 8000:8000 battery-aging-api
+```
+This command runs the container in detached mode (-d) and binds the container's port 8000 to your local machine's port 8000, making the API accessible via `http://localhost:8000.`
+
+If everything is successful, the FastAPI server should be running and serving the API.
+
