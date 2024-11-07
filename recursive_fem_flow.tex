@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{amsmath} % For using \text and other math functions
+\usepackage{amsfonts} % For using \mathbb and other math fonts
+\usepackage{graphicx} % For including graphics
+
+\title{Recursive Finite Element Method (RFEM) Flow}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Recursive Finite Element Method (RFEM) Flow}
+
+The Recursive Finite Element Method (RFEM) provides a structured approach for solving differential equations in engineering analysis, particularly focusing on the recursive assembly of matrices.
+
+\subsection*{Key Steps}
+
+\begin{enumerate}
+    \item \textbf{Finite Element Discretization}:
+    \begin{itemize}
+        \item Convert the governing differential equation into a weak form suitable for discretization.
+        \item Represent the solution using \textbf{shape functions} \( N \) over each element.
+    \end{itemize}
+
+    \item \textbf{Element Matrices}:
+    \begin{itemize}
+        \item Define element-wise \textbf{stiffness matrix} \( K_e \), \textbf{mass matrix} \( M_e \), and \textbf{load vector} \( F_e \).
+        \item Assemble the \textbf{global stiffness matrix} \( K \) recursively:
+        \[
+        K = \sum_{e=1}^{n} K_e
+        \]
+        \item Recursively add each element's contribution:
+        \[
+        K^{(r)} = K^{(r-1)} + K_e
+        \]
+    \end{itemize}
+
+    \item \textbf{Boundary Condition Application}:
+    \begin{itemize}
+        \item Adjust the global matrix to enforce \textbf{boundary conditions}:
+        \[
+        K_{ii} = 1, \quad K_{ij} = 0 \; (i \neq j), \quad F_i = u_i
+        \]
+    \end{itemize}
+
+    \item \textbf{System Solution}:
+    \begin{itemize}
+        \item Solve the linear system:
+        \[
+        K u = F
+        \]
+        \item Use methods like \textbf{conjugate gradient} for efficient recursive solution, especially for large, sparse matrices.
+    \end{itemize}
+
+    \item \textbf{Adaptive Refinement}:
+    \begin{itemize}
+        \item Use \textbf{error estimation} to refine elements:
+        \[
+        e_e = \left\lVert u_e - u_{\text{exact}} \right\rVert > \text{threshold}
+        \]
+        \item Recursively refine elements with high error to improve accuracy.
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Summary}
+RFEM involves recursive matrix assembly, application of boundary conditions, solving the linear system, and adaptive refinement based on error estimates. This approach is well-suited for large-scale engineering problems where efficient handling of matrices and error control is crucial.
+
+\end{document}
