@@ -10,6 +10,9 @@ COPY requirements.txt /app/requirements.txt
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
+# Update this line in the Dockerfile
+RUN pip install --no-cache-dir -r /app/requirements.txt && pip install scikit-learn==1.4.2
+
 # Copy the current directory contents into the container at /app
 COPY . /app
 
