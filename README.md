@@ -285,6 +285,11 @@ Below is the flow chart explaining how the loop works for RFE:
 
 ![Recursive Feature Elimination (RFE) flowchart](plots/RF_flowchart.png)
 
+## Documentation
+
+For detailed information on the Recursive Finite Element Method (RFEM) flow, refer to the [LaTeX document](recursive_fem_flow.tex).
+
+
 #### Retraining Results
 
 The retrained model using only the two features—**Voltage [V]** and **Capacity [Ah]**—yielded excellent results:
