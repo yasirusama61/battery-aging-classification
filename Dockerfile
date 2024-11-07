@@ -17,4 +17,4 @@ COPY . /app
 EXPOSE 8000
 
 # Command to run the application using uvicorn
-CMD ["uvicorn", "battery_aging_prediction_api:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "battery_aging_prediction_api:app", "--host", "0.0.0.0", "--port", "8000"]
