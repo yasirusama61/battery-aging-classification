@@ -287,8 +287,7 @@ Below is the flow chart explaining how the loop works for RFE:
 
 ## Documentation
 
-For detailed information on the Recursive Finite Element Method (RFEM) flow, refer to the [LaTeX document](recursive_fem_flow.tex).
-
+For detailed information on the Recursive Finite Element Method (RFEM) flow, refer to the [PDF document](recursive_fem_flow.pdf).
 
 #### Retraining Results
 
