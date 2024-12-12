@@ -203,11 +203,11 @@ Below is an image showing the configuration of the `RandomForestClassifier`:
 
 #### 🔍 Confusion Matrix Insights
 
-- **Healthy**: The model correctly predicted **95,360** instances with no false negatives or positives, highlighting its accuracy for this class.
-- **Moderate Aging**: Correctly identified **6,412** instances with no misclassifications.
-- **Aged**: Achieved **6,693** correct predictions with only **1** misclassification, demonstrating high performance even for the minority class.
+- **Aged (0)**: The model correctly predicted **46,015** instances, with **212** misclassified as other classes (105 as "Moderate Aging" and 107 as "Healthy").
+- **Moderate Aging (1)**: Correctly identified **2,900** instances, with **114** misclassifications (50 as "Aged" and 64 as "Healthy").
+- **Healthy (2)**: Achieved **3,914** correct predictions with **82** misclassifications (37 as "Aged" and 45 as "Moderate Aging").
 
-This near-perfect performance demonstrates the model's robustness and ability to generalize across aging stages effectively. The balanced class distribution leads to improved model generalization and fairness in predictions.
+This performance demonstrates the model's strong ability to distinguish between aging classes. However, there is room for improvement in reducing misclassifications, especially between neighboring classes ("Moderate Aging" and "Healthy"). Despite these minor errors, the model exhibits robust performance and is well-suited for generalizing across aging stages effectively.
 
 #### 📊 Evaluation Metrics
 
