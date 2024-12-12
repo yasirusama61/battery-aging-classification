@@ -363,7 +363,7 @@ Minimal misclassifications, with a few samples misclassified out of over **53,00
 #### 📝 Key Takeaways
 
 1. **Feature Simplification**: Reducing features to **Voltage [V]** and **Capacity [Ah]** improved simplicity while maintaining high accuracy. This reduces computational costs and enhances deployment efficiency.
-2. **Model Performance**: With **99.998%** accuracy, the model accurately distinguishes aging stages. Despite reducing features, it retains strong predictive power.
+2. **Model Performance**: With **96.98%** accuracy, the model accurately distinguishes aging stages. Despite reducing features, it retains strong predictive power.
 
 #### Next Steps
 
