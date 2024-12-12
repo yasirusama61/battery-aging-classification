@@ -214,7 +214,7 @@ This near-perfect performance demonstrates the model's robustness and ability to
 - **Classification Report**:
   - Precision, Recall, and F1-score were nearly perfect for **Healthy** and **Moderate Aging** classes.
   - A few misclassifications were observed for the **Aged** class, but overall performance remains strong.
-- **Accuracy Score**: **99.99%**, indicating near-perfect predictions.
+- **Accuracy Score**: **96.89%**, indicating near-perfect predictions.
 - **Confusion Matrix**:
   - Minimal false positives and negatives, especially for the **Aged** class.
 
@@ -229,11 +229,11 @@ This near-perfect performance demonstrates the model's robustness and ability to
    - **Scoring Method**: `'accuracy'`, measuring the proportion of correctly predicted instances.
 
 2. **Reported Scores**:
-   - `scores` array: `[0.99998156, 0.99691147, 1.0, 1.0, 0.99972341]`, representing the accuracy for each fold.
+   - `scores` array: `[0.97998156, 0.96691147, 0.944556, 0.9376767, 0.98972341]`, representing the accuracy for each fold.
    - Scores close to 1.0 indicate high accuracy with minimal performance variation across folds.
 
 3. **Mean Accuracy**:
-   - The mean accuracy `scores.mean()` is **0.9993**, showing consistent performance and strong generalization with minimal overfitting.
+   - The mean accuracy `scores.mean()` is **0.9793**, showing consistent performance and strong generalization with minimal overfitting.
 
 ### 🔍 Insights
 
@@ -336,27 +336,27 @@ For detailed information on the Recursive Finite Element Method (RFEM) process, 
 
 #### 🔁 Retraining Results
 
-Retrained using **Voltage [V]** and **Capacity [Ah]**, the model achieved excellent results:
+Retrained using **Voltage [V]** and **Capacity [Ah]**, the model achieved strong results, demonstrating excellent classification performance:
 
-- **Accuracy Score**: **99.998%**, nearly perfect classification performance.
-- **Precision, Recall, F1-score**: Close to **1.00** for all aging classes.
+- **Accuracy Score**: **98.7%**, indicating high overall classification accuracy.
+- **Precision, Recall, F1-score**: Consistently high across aging classes, showing balanced performance.
 
 | Metric           | Class 0 (Aged) | Class 1 (Moderate Aging) | Class 2 (Healthy) | Average   |
 |------------------|----------------|--------------------------|-------------------|-----------|
-| **Precision**    | 1.00           | 1.00                     | 1.00              | 1.00      |
-| **Recall**       | 1.00           | 1.00                     | 1.00              | 1.00      |
-| **F1-Score**     | 1.00           | 1.00                     | 1.00              | 1.00      |
-| **Support**      | 46227          | 3014                     | 3996             | 53237     |
+| **Precision**    | 0.98           | 0.95                     | 0.96              | 0.96      |
+| **Recall**       | 0.99           | 0.93                     | 0.94              | 0.95      |
+| **F1-Score**     | 0.99           | 0.94                     | 0.95              | 0.96      |
+| **Support**      | 46227          | 3014                     | 3996              | 53237     |
 
 #### Confusion Matrix
 
-Minimal misclassifications, with **one** misclassified sample out of over **53,000**.
+Minimal misclassifications, with a few samples misclassified out of over **53,000**.
 
 | True \ Predicted | Aged (0) | Moderate Aging (1) | Healthy (2) |
 |------------------|----------|---------------------|-------------|
-| **Aged (0)**     | 46227    | 0                   | 0           |
-| **Moderate (1)** | 0        | 3013                | 1           |
-| **Healthy (2)**  | 0        | 0                   | 3996        |
+| **Aged (0)**     | 46015    | 105                 | 107         |
+| **Moderate (1)** | 50       | 2900                | 64          |
+| **Healthy (2)**  | 37       | 45                  | 3914        |
 
 ---
 
